@@ -1,0 +1,67 @@
+.frame {
+    border: 5px solid #F8D209;
+    border-radius: 10px;
+    width: 70%;
+    height: 15%;
+    margin-top: 10%;
+    margin-left: 10%;
+    }
+.History {
+    width: 70%;
+    background-image: url("Imágenes/newbiepage/newbie01.png");
+    background-size: contain;
+    background-position: right;
+    overflow: hidden;
+    }  
+.Movies {
+    width: 70%;
+    background-image: url("Imágenes/newbiepage/newbie02.png");
+    background-size: contain;
+    background-position: right;
+    overflow: hidden;
+}
+.Park {
+    width: 70%;
+    background-image: url("Imágenes/newbiepage/newbie03.png");
+    background-size: contain;
+    overflow: hidden;
+}
+.Founders {
+    width: 70%;
+    background-image: url("Imágenes/newbiepage/newbie04.png");
+    background-size: contain;
+    overflow: hidden;
+}
+.Mangas {
+    width: 70%;
+    background-image: url("Imágenes/newbiepage/newbie05.png");
+    background-size: contain;
+    overflow: hidden;
+}
+.Museum {
+    width: 70%;
+    background-image: url("Imágenes/newbiepage/newbie06.png");
+    background-size: contain;
+    overflow: hidden;
+}
+.secondBtn {
+    width: 50%;
+    cursor: pointer;
+    background-color: #3CD1EF;
+    border-radius: 10px;
+    font-family: "Jockey One", sans-serif;
+    font-size: 20px;
+    margin: center;
+    margin-left: 25%;
+    margin-right: 10%;
+    margin-top: 7%;
+    color: aliceblue;
+}
+
+    
+    
+    
+    
+    
+    
+    
