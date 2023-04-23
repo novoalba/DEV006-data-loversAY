@@ -57,7 +57,7 @@ if (climateSelect) {
   });
 }
 
-function openModal(id) {
+/*function openModal(id) {
   document.getElementById(id).classList.add('open');
   document.body.classList.add("modal-open");
 }
@@ -97,4 +97,4 @@ window.addEventListener("load", function () {
       openModale(btn.getAttribute("modal"))
     });
   });
-});
+});*/

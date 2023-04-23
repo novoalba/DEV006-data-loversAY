@@ -4,6 +4,12 @@ table {
   font-size: 120%;
   margin:auto;
   text-align: justify;
+  color: #ffdafc;
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.719);
+  border-radius: 4%;
+  border-color: #9e09a5;
 }
 .characterImg {
   width: 80%;
