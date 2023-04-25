@@ -95,6 +95,11 @@ ul li:hover {
   background: #EE9547;
   color: #fff;
 }
+.card {
+  background-color: beige;
+  border-radius: 1%;
+  border-color: #9E09A5;
+}
 @media only screen and (max-width: 768px) {
   .navbar {
     top: 0px;

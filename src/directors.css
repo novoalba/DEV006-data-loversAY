@@ -1,0 +1,60 @@
+.pregunta{
+    border: 5px solid #4c7904;
+    border-radius: 10px;
+    width: 30%;
+    height: 15%;
+    padding: 3%;
+    margin-top: 5%;
+    margin-left: 35%;
+    color: rgb(40, 38, 1);
+    font-family: "Jockey One", sans-serif;
+    font-size: 120%;
+    background-color: rgba(246, 177, 92, 0.952);
+    opacity: 0.9;
+    text-align: center;
+}
+.respuesta{
+    border: 5px solid #26d108;
+    border-radius: 10px;
+    width: 30%;
+    margin-top: 5%;
+    margin-left: 38%;
+    font-family: "Jockey One", sans-serif;
+    font-size: 120%;
+    text-align: center;
+    color: rgb(244, 229, 231);
+}
+h1{
+    color: rgba(0, 0, 0, 0.771);
+    text-align: center;
+    background-image: url(Imágenes/paisaje.jpeg);
+    background-size: contain;
+    padding: 3%;
+    font-family: "Jockey One", sans-serif;
+}
+.secondBtn {
+    width: 30%;
+    padding: 14px;
+    margin-left: 38%;
+    background-color: #3CD1EF;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: "Jockey One", sans-serif;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .pregunta{
+        width: 50%;
+        margin-left: 20%;
+    }
+    .respuesta{
+        width: 50%;
+        margin-left: 24%;
+    }
+    .secondBtn {
+        margin-left: 30%;
+        width: 40%;
+    }
+}

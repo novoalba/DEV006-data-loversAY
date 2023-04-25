@@ -6,16 +6,12 @@ export const dataFilms = data.films;
 export function filterByMovies(director) {
   const moviesTable = document.getElementById("moviesTable");
   if (!moviesTable) {
-    //console.error("moviesTable element not found");
     return [];
   }
   
   const filteredFilms = dataFilms.filter(movie => {
     return director === "allDirectors" || movie.director === director;
   });
-
-  //console.log("filteredFilms", filteredFilms);
-  //console.log("director", director);
 
   let tableBody = "";
   filteredFilms.forEach((movie, index) => {
@@ -39,8 +35,6 @@ export function filterByMovies(director) {
     }
   });
   moviesTable.innerHTML = tableBody;
-  //console.log(filteredFilms.length);
-  //console.log(filterByMovies(director).length);
   return filteredFilms;
 }
 filterByMovies("allDirectors");
@@ -56,11 +50,8 @@ export function sortMoviesByDateOldestToNewest() {
 export function filterCharactersBySpeciesAndGender(specie, gender) {
   const charactersTable = document.getElementById("charactersTable");
   if(!charactersTable){
-    //console.log("charactersTable element not found")
     return [];
   }
-  //const charactersBody = charactersTable.getElementsByTagName('tbody')[0];
-  //const characterSpecieSelection = document.getElementById("charactersSpecieSelect").value;
 
   const filteredCharacters = dataFilms.flatMap(film => {
     return film.people.filter(person => {
@@ -100,19 +91,16 @@ export function filterCharactersBySpeciesAndGender(specie, gender) {
     index++;
   });
   charactersTable.innerHTML = tableBody;
-  console.log(filteredCharacters.length);
   return filteredCharacters;
 }
 filterCharactersBySpeciesAndGender("allSpecies", "allGenders");
 
+
 export function filterLocationsByClimate(climate) {
   const locationsTable = document.getElementById("locationsTable");
   if (!locationsTable) {
-    //console.log("charactersTable element not found")
     return [];
   }
-  //const locationsBody = locationsTable.getElementsByTagName("tbody")[0];
-  //const locationsClimateSelection = document.getElementById("climateSelect").value;
 
   const filteredLocations = dataFilms.flatMap((film) => {
     return film.locations.filter(place => {
@@ -154,7 +142,6 @@ function vehiclesTableOne() {
   if (!vehiclesTable) { 
     return [];
   }
-  //const vehiclesBody = vehiclesTable.getElementsByTagName("tbody")[0];
 
   const flattenedVehicles = dataFilms.flatMap((film => film.vehicles) 
   );
@@ -171,9 +158,8 @@ function vehiclesTableOne() {
     const vehicleName = "<h3>" + vehicle.name + "</h3>";
     const description = "<p class= 'justify'>" + vehicle.description + "</p>";
     const vehicleClass = "<p> Class: " + vehicle.vehicle_class + "</p>";
-    //const pilotName = "<p> Pilot name: " + vehicle.pilot + "</p>";
-    tBody =
-    tBody + vehicleImg + vehicleName + description + vehicleClass;
+  
+    tBody = tBody + vehicleImg + vehicleName + description + vehicleClass;
     tBody = tBody + "</td>";
     if (indexOne % 2 === 1) {
       tBody = tBody + "</tr>";
@@ -183,3 +169,34 @@ function vehiclesTableOne() {
   vehiclesTable.innerHTML = tBody;
 }
 vehiclesTableOne("");
+
+export const IsaoPercentage = () => {
+  const allFilms = dataFilms.length;
+  const filteredIsao = dataFilms.filter(movie => { 
+    return movie.director === "Isao Takahata";
+  }); 
+  return ((filteredIsao.length / allFilms) * 100);
+}
+
+export const releasedPercentage = () => {
+  const allFilms = dataFilms.length;
+  const filteredReleaseDate = dataFilms.filter(movie => { 
+    return movie.release_date === "1995";
+  }); 
+  return ((filteredReleaseDate.length / allFilms) * 100);
+}
+
+export const femaleCharactersPercentage = () => {
+  let totalFemaleCharacters = 0; 
+  dataFilms.forEach(film => {
+    const filteredFemaleCharacters = film.people.filter(person => person.gender === "Female");
+    totalFemaleCharacters += filteredFemaleCharacters.length; 
+  });
+  const totalCharacters = dataFilms.flatMap(film => film.people).length; 
+  const femalesPercentage = ((totalFemaleCharacters / totalCharacters) * 100).toFixed(2); 
+  return femalesPercentage;
+};
+
+
+
+

@@ -1,9 +1,9 @@
-import { filterByMovies, sortMoviesByDateNewestToOldest, sortMoviesByDateOldestToNewest, filterCharactersBySpeciesAndGender, filterLocationsByClimate } from "../src/data.js";
+import { filterByMovies, sortMoviesByDateNewestToOldest, sortMoviesByDateOldestToNewest, filterCharactersBySpeciesAndGender, filterLocationsByClimate, 
+  IsaoPercentage, releasedPercentage, femaleCharactersPercentage } from "../src/data.js";
 import { dataFilms } from "../src/data.js";
 
 describe("filterByMovies", () => {
   beforeEach(() => {
-    // Set up any necessary DOM elements or dependencies for the test
     document.body.innerHTML = `
     <table id="moviesTable">
     <tbody id="moviesTableBody">
@@ -17,7 +17,6 @@ describe("filterByMovies", () => {
   });
 
   afterEach(() => {
-    // Clean up any DOM elements or dependencies after the test
     document.body.innerHTML = "";
   });
 
@@ -31,24 +30,18 @@ describe("filterByMovies", () => {
   });
 
   it("should return movies only by the selected director", () => {
-    // Call the filterByMovies function with a director
     const director = "Hayao Miyazaki";
     const filteredFilmsSpec = filterByMovies(director);
 
-    // Assert that the result contains only movies by the selected director
-    expect(filteredFilmsSpec.length).toBe(9); // Expecting 9 movies by Hayao Miyazaki
+    expect(filteredFilmsSpec.length).toBe(9); 
   });
 });
 
 describe('sortMoviesByDateNewestToOldest', () => {
   it("should sort movies by release date from newest to oldest", () => {
-    // Import your data or define it directly here
     const films = dataFilms;
-
-    // Call the sortMoviesByDateNewestToOldest function with your data
     const sortedMovies = sortMoviesByDateNewestToOldest(films);
-
-    // Assert that the movies are sorted correctly by release date
+    
     expect(sortedMovies[0].title).toBe("When Marnie Was There");
     expect(sortedMovies[1].title).toBe("The Wind Rises");
     expect(sortedMovies[2].title).toBe("The Tale of the Princess Kaguya");
@@ -171,4 +164,23 @@ describe("filterLocationsByClimate", () => {
     expect(filteredLocationsClimate.length).toBe(29);
   });
 });
+
+describe('IsaoPercentage', () => {
+  it("should return the percentage of movies directed by Isao Takahata", () => {
+    expect(IsaoPercentage()).toBe(25);
+  });
+});
+
+describe('releasedPercentage', () => {
+  it("should return the percentage of movies released in 1995", () => {
+    expect(releasedPercentage()).toBe(5);
+  });
+});
+
+describe('femaleCharactersPercentage', () => {
+  it("should return the percentage of female characters", () => {
+    expect(femaleCharactersPercentage()).toBe("47.37");
+  });
+});
+
 
