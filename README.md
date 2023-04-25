@@ -4,7 +4,7 @@ La plataforma de estudio Ghibli, se encuentra orientada a dos tipos de usuarios 
 
 La plataforma es completamente gratuita y no es necesario que te registres para poder interactuar con la información.
 
-![página principal] https://github.com/novoalba/DEV006-data-loversAY/blob/main/src/Im%C3%A1genes/pagina_principal.PNG
+https://github.com/novoalba/DEV006-data-loversAY/blob/main/src/Im%C3%A1genes/pagina_principal.PNG
 
 La página principal se divide en dos secciones: novato y fandom.
 
@@ -17,8 +17,8 @@ La sección parque te direcciona a la página principal de Ghibli y muestra un m
 La sección museo al igual que la de parque, te direcciona a la página oficial del estudio y muestra una descripción así como ubicación, talleres, eventos,etc.
 
 
-![prototipo de Newbie] https://github.com/novoalba/DEV006-data-loversAY/blob/main/src/Im%C3%A1genes/novato_proto.jpg
-![página principal de Newbie]
+https://github.com/novoalba/DEV006-data-loversAY/blob/main/src/Im%C3%A1genes/novato_proto.jpg
+
 
 
 Dentro de la página “fandom” que está dirigida a un experto en la materia, se puede visualizar:
