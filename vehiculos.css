@@ -93,3 +93,31 @@ table {
   background-color: #ee9547;
   color: #fff;
   }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      display: flex;
+      flex-flow: column;
+    }
+    .block {
+      display: flex;
+      width: 100%;
+      height: auto;
+      flex-flow: column;
+    }
+    .locationImg {
+      display: flex;
+      justify-content: center;
+      max-width: 400px;
+    }
+    .vehicleImg {
+      max-width: 50%;
+      height: auto;
+    }
+    tr {
+      display: flex;
+      flex-flow: column;
+      margin: 0.5em 0;
+      border: 1px solid rgba(3, 3, 3, 0.2);
+    }
+  }

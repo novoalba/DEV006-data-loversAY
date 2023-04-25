@@ -1,27 +1,24 @@
 //importar mi bloque gigante de data:
 import data from './data/ghibli/ghibli.js';
-const dataFilms = data.films;
+export const dataFilms = data.films;
 
 
 export function filterByMovies(director) {
   const moviesTable = document.getElementById("moviesTable");
   if (!moviesTable) {
-    //console.error("moviesTable element not found");
-    return;
+    return [];
   }
-  const moviesBody = moviesTable.getElementsByTagName('tbody')[0];
-  let filteredFilms = dataFilms;
-
-  if (director !== "allDirectors") {
-    filteredFilms = dataFilms.filter(movie => movie.director === director);
-  }
+  
+  const filteredFilms = dataFilms.filter(movie => {
+    return director === "allDirectors" || movie.director === director;
+  });
 
   let tableBody = "";
   filteredFilms.forEach((movie, index) => {
     if (index % 3 === 0) {
       tableBody = tableBody + "<tr>"
     }
-    tableBody = tableBody + "<td>"
+    tableBody = tableBody + "<td class='card'>"
 
     const posterImg = "<img src='" + movie.poster + "' class='moviePoster'/>"
     const movieTitle = "<h3>" + movie.title + "</h3>";
@@ -37,33 +34,31 @@ export function filterByMovies(director) {
       tableBody = tableBody + "</tr>";
     }
   });
-  moviesBody.innerHTML = tableBody;
+  moviesTable.innerHTML = tableBody;
+  return filteredFilms;
 }
 filterByMovies("allDirectors");
 
 export function sortMoviesByDateNewestToOldest() {
-  dataFilms.sort((a, b) => (b.release_date) - (a.release_date));
+  return dataFilms.sort((a, b) => (b.release_date) - (a.release_date));
 }
 
 export function sortMoviesByDateOldestToNewest() {
-  dataFilms.sort((a, b) => (a.release_date) - (b.release_date));
+  return dataFilms.sort((a, b) => (a.release_date) - (b.release_date));
 }
 
 export function filterCharactersBySpeciesAndGender(specie, gender) {
   const charactersTable = document.getElementById("charactersTable");
   if(!charactersTable){
-    //console.log("charactersTable element not found")
-    return;
+    return [];
   }
-  const charactersBody = charactersTable.getElementsByTagName('tbody')[0];
-  const characterSpecieSelection = document.getElementById("charactersSpecieSelect").value;
 
   const filteredCharacters = dataFilms.flatMap(film => {
     return film.people.filter(person => {
       if (specie !== "allSpecies" && gender !== "allGenders") {
-        return person.specie === characterSpecieSelection && person.gender === gender;
+        return person.specie === specie && person.gender === gender;
       } else if (specie !== "allSpecies") {
-        return person.specie === characterSpecieSelection;
+        return person.specie === specie;
       } else if (gender !== "allGenders") {
         return person.gender === gender;
       } else {
@@ -78,7 +73,7 @@ export function filterCharactersBySpeciesAndGender(specie, gender) {
     if (index % 3 === 0) {
       tableBody = tableBody + "<tr>";
     }
-    tableBody = tableBody + "<td>";
+    tableBody = tableBody + "<td  class='card'>";
 
     const characterImg = "<img src='" + person.img + "' class='characterImg'/>";
     const characterName = "<h3>" + person.name + "</h3>";
@@ -95,23 +90,22 @@ export function filterCharactersBySpeciesAndGender(specie, gender) {
     }
     index++;
   });
-  charactersBody.innerHTML = tableBody;
+  charactersTable.innerHTML = tableBody;
+  return filteredCharacters;
 }
 filterCharactersBySpeciesAndGender("allSpecies", "allGenders");
+
 
 export function filterLocationsByClimate(climate) {
   const locationsTable = document.getElementById("locationsTable");
   if (!locationsTable) {
-    //console.log("charactersTable element not found")
-    return;
+    return [];
   }
-  const locationsBody = locationsTable.getElementsByTagName("tbody")[0];
-  const locationsClimateSelection = document.getElementById("climateSelect").value;
 
   const filteredLocations = dataFilms.flatMap((film) => {
     return film.locations.filter(place => {
       if (climate !== "allClimates") {
-        return place.climate === locationsClimateSelection;
+        return place.climate === climate;
       } else {
         return true;
       }
@@ -125,7 +119,7 @@ export function filterLocationsByClimate(climate) {
     if (indexOne % 2 === 0) {
       tBody = tBody + "<tr>";
     }
-    tBody = tBody + "<td>";
+    tBody = tBody + "<td  class='card'>";
     const locationImg = "<img src='" + location.img + "' class='locationImg'/>";
     const locationName = "<h3>" + location.name + "</h3>";
     const locationClimate = "<p> Climate: " + location.climate + "</p>";
@@ -138,16 +132,16 @@ export function filterLocationsByClimate(climate) {
     }
     indexOne++;
   });
-  locationsBody.innerHTML = tBody;
+  locationsTable.innerHTML = tBody;
+  return filteredLocations;
 }
 filterLocationsByClimate("allClimates");
 
 function vehiclesTableOne() {
   const vehiclesTable = document.getElementById("vehiclesTable");
   if (!vehiclesTable) { 
-    return;
+    return [];
   }
-  const vehiclesBody = vehiclesTable.getElementsByTagName("tbody")[0];
 
   const flattenedVehicles = dataFilms.flatMap((film => film.vehicles) 
   );
@@ -159,21 +153,50 @@ function vehiclesTableOne() {
     if (indexOne % 2 === 0) {
       tBody = tBody + "<tr>";
     }
-    tBody = tBody + "<td>";
+    tBody = tBody + "<td  class='card'>";
     const vehicleImg = "<img src='" + vehicle.img + "' class='vehicleImg'/>";
     const vehicleName = "<h3>" + vehicle.name + "</h3>";
     const description = "<p class= 'justify'>" + vehicle.description + "</p>";
     const vehicleClass = "<p> Class: " + vehicle.vehicle_class + "</p>";
-    //const pilotName = "<p> Pilot name: " + vehicle.pilot + "</p>";
-    tBody =
-    tBody + vehicleImg + vehicleName + description + vehicleClass;
+  
+    tBody = tBody + vehicleImg + vehicleName + description + vehicleClass;
     tBody = tBody + "</td>";
     if (indexOne % 2 === 1) {
       tBody = tBody + "</tr>";
     }
     indexOne++;
   });
-  vehiclesBody.innerHTML = tBody;
+  vehiclesTable.innerHTML = tBody;
 }
 vehiclesTableOne("");
+
+export const IsaoPercentage = () => {
+  const allFilms = dataFilms.length;
+  const filteredIsao = dataFilms.filter(movie => { 
+    return movie.director === "Isao Takahata";
+  }); 
+  return ((filteredIsao.length / allFilms) * 100);
+}
+
+export const releasedPercentage = () => {
+  const allFilms = dataFilms.length;
+  const filteredReleaseDate = dataFilms.filter(movie => { 
+    return movie.release_date === "1995";
+  }); 
+  return ((filteredReleaseDate.length / allFilms) * 100);
+}
+
+export const femaleCharactersPercentage = () => {
+  let totalFemaleCharacters = 0; 
+  dataFilms.forEach(film => {
+    const filteredFemaleCharacters = film.people.filter(person => person.gender === "Female");
+    totalFemaleCharacters += filteredFemaleCharacters.length; 
+  });
+  const totalCharacters = dataFilms.flatMap(film => film.people).length; 
+  const femalesPercentage = ((totalFemaleCharacters / totalCharacters) * 100).toFixed(2); 
+  return femalesPercentage;
+};
+
+
+
 

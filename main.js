@@ -1,4 +1,5 @@
-import {filterByMovies, sortMoviesByDateNewestToOldest, sortMoviesByDateOldestToNewest, filterCharactersBySpeciesAndGender, filterLocationsByClimate} from './data.js';
+import {filterByMovies, sortMoviesByDateNewestToOldest, sortMoviesByDateOldestToNewest, filterCharactersBySpeciesAndGender, filterLocationsByClimate, 
+  releasedPercentage, IsaoPercentage, femaleCharactersPercentage} from './data.js';
 
 const directorSelect = document.getElementById("directorSelect");
 if (directorSelect) {
@@ -58,23 +59,37 @@ if (climateSelect) {
 }
 
 function openModal(id) {
-  document.getElementById(id).classList.add('open');
-  document.body.classList.add("modal-open");
+  if (openModal) {
+    document.getElementById(id).classList.add('open');
+    document.body.classList.add("modal-open");
+  }
 }
-// close currently open modal
+
 function closeModal() {
-  document.querySelector(".modal").classList.remove('open');
-  document.body.classList.remove("modal-open");
+  if (closeModal) {
+    document.querySelector(".modal").classList.remove('open');
+    document.body.classList.remove("modal-open");
+  }
 }
-window.addEventListener("load", function() {
-// close modas on background click
-  document.querySelector(".close-modal").addEventListener("click", () => {
-    closeModal();
+
+if (closeModal) {
+  window.addEventListener("load", function() {
+    const closeModalElement = document.querySelector(".close-modal");
+    const openModalElement = document.getElementById("1a");
+
+    if (closeModalElement) {
+      closeModalElement.addEventListener("click", () => {
+        closeModal();
+      });
+    }
+
+    if (openModalElement) {
+      openModalElement.addEventListener("click", () => {
+        openModal("history-modal");
+      });
+    }
   });
-  document.getElementById("1a").addEventListener("click", () => {
-    openModal("history-modal");
-  });
-});
+}
 
 function openModale(id) {
   document.getElementById(id).classList.add("open");
@@ -88,7 +103,7 @@ window.addEventListener("load", function () {
   const btnsClose = document.querySelectorAll(".close-modal");
   btnsClose.forEach((btn) => {
     btn.addEventListener("click", function() {
-      closeModale(btn?.parentElement?.parentElement?.id)
+      closeModale(btn.parentElement.parentElement.id)
     });
   });
   const btnModals = document.querySelectorAll(".btn-modal");
@@ -98,3 +113,51 @@ window.addEventListener("load", function () {
     });
   });
 });
+
+const btnP11 = document.getElementById("p11");
+if (btnP11) {
+  btnP11.addEventListener("click", () => {
+    const result = releasedPercentage();
+    const r11 = document.getElementById("r11");
+
+    const showElements = document.querySelectorAll(".show");
+    showElements.forEach(element => {
+      element.style.display = 'none';
+    });
+
+    r11.innerHTML = 'The percentage of movies released on 1995 is ' + result + '%';
+    r11.style.display = 'block';
+  });
+}
+
+const btnP21 = document.getElementById("p21");
+if (btnP21) {
+  btnP21.addEventListener("click", () => {
+    const result = IsaoPercentage();
+    const r21 = document.getElementById("r21");
+
+    const showElements = document.querySelectorAll(".show");
+    showElements.forEach(element => {
+      element.style.display = 'none';
+    });
+
+    r21.innerHTML = 'The percentage of movies directed by Isao Takahata is ' + result + '%';
+    r21.style.display = 'block';
+  });
+}
+
+const btnP31 = document.getElementById("p31");
+if (btnP31) {
+  btnP31.addEventListener("click", () => {
+    const result = femaleCharactersPercentage();
+    const r31 = document.getElementById("r31");
+
+    const showElements = document.querySelectorAll(".show");
+    showElements.forEach(element => {
+      element.style.display = 'none';
+    });
+
+    r31.innerHTML = 'The percentage of female characteres is ' + result + '%';
+    r31.style.display = 'block';
+  });
+}
